@@ -187,7 +187,7 @@ function PaymentPage() {
             {/* Amount */}
             <div
               className={`mt-4 flex items-center rounded-xl border-2 bg-[#131313] px-4 py-4 ${
-                errors.amount ? "border-red-500" : "border-[#7c5cfc]"
+                errors.amount ? "border-red-500" : "border-zinc-700 focus-within:border-[#7c5cfc]"
               }`}
             >
               <span className="mr-3 text-2xl text-zinc-500">₹</span>
@@ -208,7 +208,7 @@ function PaymentPage() {
             )}
 
             {/* Message (optional) */}
-            <div className="mt-3 rounded-xl border border-zinc-700 bg-[#131313] px-4 py-4">
+            <div className="mt-3 rounded-xl border-2 border-zinc-700 bg-[#131313] px-4 py-4 focus-within:border-[#7c5cfc]">
               <input
                 id="message"
                   placeholder="Add a message (optional)"
