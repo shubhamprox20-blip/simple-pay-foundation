@@ -15,6 +15,7 @@ import { Route as BalanceSuccessRouteImport } from './routes/balance-success'
 import { Route as CheckBalanceRouteImport } from './routes/check-balance'
 import { Route as PayRouteImport } from './routes/pay'
 import { Route as PinRouteImport } from './routes/pin'
+import { Route as ScanRouteImport } from './routes/scan'
 import { Route as SuccessRouteImport } from './routes/success'
 import { Route as SuccessDetailsRouteImport } from './routes/success-details'
 
@@ -48,6 +49,11 @@ const PinRoute = PinRouteImport.update({
   path: '/pin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScanRoute = ScanRouteImport.update({
+  id: '/scan',
+  path: '/scan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SuccessRoute = SuccessRouteImport.update({
   id: '/success',
   path: '/success',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/check-balance': typeof CheckBalanceRoute
   '/pay': typeof PayRoute
   '/pin': typeof PinRoute
+  '/scan': typeof ScanRoute
   '/success': typeof SuccessRoute
   '/success-details': typeof SuccessDetailsRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/check-balance': typeof CheckBalanceRoute
   '/pay': typeof PayRoute
   '/pin': typeof PinRoute
+  '/scan': typeof ScanRoute
   '/success': typeof SuccessRoute
   '/success-details': typeof SuccessDetailsRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/check-balance': typeof CheckBalanceRoute
   '/pay': typeof PayRoute
   '/pin': typeof PinRoute
+  '/scan': typeof ScanRoute
   '/success': typeof SuccessRoute
   '/success-details': typeof SuccessDetailsRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/check-balance'
     | '/pay'
     | '/pin'
+    | '/scan'
     | '/success'
     | '/success-details'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/check-balance'
     | '/pay'
     | '/pin'
+    | '/scan'
     | '/success'
     | '/success-details'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/check-balance'
     | '/pay'
     | '/pin'
+    | '/scan'
     | '/success'
     | '/success-details'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   CheckBalanceRoute: typeof CheckBalanceRoute
   PayRoute: typeof PayRoute
   PinRoute: typeof PinRoute
+  ScanRoute: typeof ScanRoute
   SuccessRoute: typeof SuccessRoute
   SuccessDetailsRoute: typeof SuccessDetailsRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PinRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scan': {
+      id: '/scan'
+      path: '/scan'
+      fullPath: '/scan'
+      preLoaderRoute: typeof ScanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/success': {
       id: '/success'
       path: '/success'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckBalanceRoute: CheckBalanceRoute,
   PayRoute: PayRoute,
   PinRoute: PinRoute,
+  ScanRoute: ScanRoute,
   SuccessRoute: SuccessRoute,
   SuccessDetailsRoute: SuccessDetailsRoute,
 }
