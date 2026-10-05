@@ -158,6 +158,7 @@ function PaymentPage() {
               <div className="min-w-0 flex-1">
                 <input
                   id="receiverName"
+                  placeholder="Enter receiver name"
                   type="text"
                   value={receiverName}
                   onChange={(e) => setReceiverName(e.target.value)}
@@ -167,6 +168,7 @@ function PaymentPage() {
                 />
                 <input
                   id="upiId"
+                  placeholder="Enter UPI ID (e.g. name@bank)"
                   type="text"
                   value={upiId}
                   onChange={(e) => setUpiId(e.target.value)}
@@ -191,6 +193,7 @@ function PaymentPage() {
               <span className="mr-3 text-2xl text-zinc-500">₹</span>
               <input
                 id="amount"
+                  placeholder="Enter amount"
                 type="text"
                 inputMode="decimal"
                 value={amount}
@@ -208,6 +211,7 @@ function PaymentPage() {
             <div className="mt-3 rounded-xl border border-zinc-700 bg-[#131313] px-4 py-4">
               <input
                 id="message"
+                  placeholder="Add a message (optional)"
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
