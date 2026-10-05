@@ -138,6 +138,7 @@ function HomeScreenPage() {
           <button
             type="button"
             aria-label="Scan and pay"
+            onClick={() => navigate({ to: "/scan" })}
             className="absolute inset-y-0 left-2/5 w-1/5 cursor-pointer bg-transparent"
           />
           <button
