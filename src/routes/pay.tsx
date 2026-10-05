@@ -197,7 +197,10 @@ function PaymentPage() {
                 type="text"
                 inputMode="decimal"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (/^\d*\.?\d{0,2}$/.test(v)) setAmount(v);
+                }}
                 maxLength={12}
                 aria-label="Amount"
                 className="w-full bg-transparent text-2xl font-semibold text-white placeholder:font-semibold placeholder:text-zinc-500 focus:outline-none"
