@@ -1,17 +1,35 @@
 import { QueryClient } from "@tanstack/react-query";
-import { createRouter, rootRouteId } from "@tanstack/react-router";
+import { createMemoryHistory, createRouter } from "@tanstack/react-router";
 import { describe, expect, it } from "vitest";
 
 import { routeTree } from "@/routeTree.gen";
 
-// Match routes without running loaders or rendering: loaders may need a server or
-// network the test run lacks, and jsdom never loads the stylesheets React waits on.
+async function loadAt(path: string) {
+  const router = createRouter({
+    routeTree,
+    context: { queryClient: new QueryClient() },
+    history: createMemoryHistory({ initialEntries: [path] }),
+  });
+  await router.load();
+  return router.state.matches;
+}
+
+function failedMatches(matches: Awaited<ReturnType<typeof loadAt>>) {
+  return matches.filter((m) => m.status !== "success").map((m) => [m.routeId, String(m.error)]);
+}
+
+// Resolve routes without rendering: jsdom never loads stylesheets, and React
+// holds the whole render until any stylesheet link in the root head loads.
 describe("App routing", () => {
-  it("matches a page for / instead of falling back to not found", () => {
-    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+  it("loads the index route without a loader error", async () => {
+    const matches = await loadAt("/");
 
-    const matches = router.matchRoutes("/");
+    expect(failedMatches(matches)).toEqual([]);
+  });
 
-    expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
+  it("loads an unknown path without a loader error", async () => {
+    const matches = await loadAt("/this-route-does-not-exist");
+
+    expect(failedMatches(matches)).toEqual([]);
   });
 });

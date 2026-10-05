@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BalancePinRouteImport } from './routes/balance-pin'
+import { Route as BalanceSuccessRouteImport } from './routes/balance-success'
+import { Route as CheckBalanceRouteImport } from './routes/check-balance'
+import { Route as PayRouteImport } from './routes/pay'
+import { Route as PinRouteImport } from './routes/pin'
+import { Route as SuccessRouteImport } from './routes/success'
+import { Route as SuccessDetailsRouteImport } from './routes/success-details'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BalancePinRoute = BalancePinRouteImport.update({
+  id: '/balance-pin',
+  path: '/balance-pin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BalanceSuccessRoute = BalanceSuccessRouteImport.update({
+  id: '/balance-success',
+  path: '/balance-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckBalanceRoute = CheckBalanceRouteImport.update({
+  id: '/check-balance',
+  path: '/check-balance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PayRoute = PayRouteImport.update({
+  id: '/pay',
+  path: '/pay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PinRoute = PinRouteImport.update({
+  id: '/pin',
+  path: '/pin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuccessRoute = SuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuccessDetailsRoute = SuccessDetailsRouteImport.update({
+  id: '/success-details',
+  path: '/success-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/balance-pin': typeof BalancePinRoute
+  '/balance-success': typeof BalanceSuccessRoute
+  '/check-balance': typeof CheckBalanceRoute
+  '/pay': typeof PayRoute
+  '/pin': typeof PinRoute
+  '/success': typeof SuccessRoute
+  '/success-details': typeof SuccessDetailsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/balance-pin': typeof BalancePinRoute
+  '/balance-success': typeof BalanceSuccessRoute
+  '/check-balance': typeof CheckBalanceRoute
+  '/pay': typeof PayRoute
+  '/pin': typeof PinRoute
+  '/success': typeof SuccessRoute
+  '/success-details': typeof SuccessDetailsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/balance-pin': typeof BalancePinRoute
+  '/balance-success': typeof BalanceSuccessRoute
+  '/check-balance': typeof CheckBalanceRoute
+  '/pay': typeof PayRoute
+  '/pin': typeof PinRoute
+  '/success': typeof SuccessRoute
+  '/success-details': typeof SuccessDetailsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/balance-pin'
+    | '/balance-success'
+    | '/check-balance'
+    | '/pay'
+    | '/pin'
+    | '/success'
+    | '/success-details'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/balance-pin'
+    | '/balance-success'
+    | '/check-balance'
+    | '/pay'
+    | '/pin'
+    | '/success'
+    | '/success-details'
+  id:
+    | '__root__'
+    | '/'
+    | '/balance-pin'
+    | '/balance-success'
+    | '/check-balance'
+    | '/pay'
+    | '/pin'
+    | '/success'
+    | '/success-details'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BalancePinRoute: typeof BalancePinRoute
+  BalanceSuccessRoute: typeof BalanceSuccessRoute
+  CheckBalanceRoute: typeof CheckBalanceRoute
+  PayRoute: typeof PayRoute
+  PinRoute: typeof PinRoute
+  SuccessRoute: typeof SuccessRoute
+  SuccessDetailsRoute: typeof SuccessDetailsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/balance-pin': {
+      id: '/balance-pin'
+      path: '/balance-pin'
+      fullPath: '/balance-pin'
+      preLoaderRoute: typeof BalancePinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/balance-success': {
+      id: '/balance-success'
+      path: '/balance-success'
+      fullPath: '/balance-success'
+      preLoaderRoute: typeof BalanceSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/check-balance': {
+      id: '/check-balance'
+      path: '/check-balance'
+      fullPath: '/check-balance'
+      preLoaderRoute: typeof CheckBalanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pay': {
+      id: '/pay'
+      path: '/pay'
+      fullPath: '/pay'
+      preLoaderRoute: typeof PayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pin': {
+      id: '/pin'
+      path: '/pin'
+      fullPath: '/pin'
+      preLoaderRoute: typeof PinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/success': {
+      id: '/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof SuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/success-details': {
+      id: '/success-details'
+      path: '/success-details'
+      fullPath: '/success-details'
+      preLoaderRoute: typeof SuccessDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BalancePinRoute: BalancePinRoute,
+  BalanceSuccessRoute: BalanceSuccessRoute,
+  CheckBalanceRoute: CheckBalanceRoute,
+  PayRoute: PayRoute,
+  PinRoute: PinRoute,
+  SuccessRoute: SuccessRoute,
+  SuccessDetailsRoute: SuccessDetailsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
