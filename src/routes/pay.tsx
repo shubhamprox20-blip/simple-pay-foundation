@@ -30,6 +30,10 @@ const paymentSchema = z.object({
 });
 
 export const Route = createFileRoute("/pay")({
+  validateSearch: (search) =>
+    z
+      .object({ pa: z.string().optional(), pn: z.string().optional() })
+      .parse(search),
   head: () => ({
     meta: [
       { title: "Pay — Send Money via UPI" },
@@ -62,8 +66,9 @@ function getInitials(name: string) {
 
 function PaymentPage() {
   const navigate = useNavigate();
-  const [receiverName, setReceiverName] = useState("");
-  const [upiId, setUpiId] = useState("");
+  const search = Route.useSearch();
+  const [receiverName, setReceiverName] = useState(search.pn ?? "");
+  const [upiId, setUpiId] = useState(search.pa ?? "");
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
