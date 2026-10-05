@@ -32,8 +32,19 @@ function ScanPage() {
           { facingMode: "environment" },
           { fps: 10, qrbox: { width: 250, height: 250 } },
           (text) => {
-            setResult(text);
             scanner.stop().catch(() => {});
+            if (text.toLowerCase().startsWith("upi://")) {
+              const params = new URLSearchParams(text.split("?")[1] ?? "");
+              navigate({
+                to: "/pay",
+                search: {
+                  pa: params.get("pa") ?? undefined,
+                  pn: params.get("pn") ?? undefined,
+                },
+              });
+              return;
+            }
+            setResult(text);
           },
           () => {},
         );
@@ -46,7 +57,7 @@ function ScanPage() {
       const s = scannerRef.current;
       if (s?.isScanning) s.stop().catch(() => {});
     };
-  }, [result]);
+  }, [result, navigate]);
 
   return (
     <main className="flex min-h-screen flex-col bg-foreground text-background">
